@@ -23,4 +23,11 @@ public class Booking {
     @Column(name = "check_out_date")
     private LocalDate checkOutDate;
 
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+
+    @ManyToOne
+    @JoinColumn(name = "room_id")
+    private Room room;
 }

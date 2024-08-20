@@ -21,6 +21,7 @@ public class Room {
     @Column(name = "room_number")
     private String roomNumber;
 
+    @Column(columnDefinition = "nvarchar(max)")
     private String type;
 
     @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

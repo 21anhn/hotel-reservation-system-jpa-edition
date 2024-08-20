@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface RoomService {
 
+    void addRoom(Room room);
     void saveRoom(Room room);
     void deleteRoom(Room room);
     Room getRoomById(Long id);

@@ -15,9 +15,13 @@ public class RoomRepository {
     @PersistenceContext
     private EntityManager em;
 
-    //Create/Update
+    //Create
     public void save(Room room) {
         em.persist(room);
+    }
+
+    public void update(Room room) {
+        em.merge(room);
     }
 
     public void delete(Room room) {

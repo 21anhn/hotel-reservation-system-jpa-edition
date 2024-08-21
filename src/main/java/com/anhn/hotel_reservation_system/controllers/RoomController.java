@@ -16,6 +16,15 @@ public class RoomController {
     @Autowired
     private RoomService roomService;
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Room> getRoomById(@PathVariable Long id) {
+        Room room = roomService.getRoomById(id);
+        if(room == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(room, HttpStatus.OK);
+    }
+
     @GetMapping
     public ResponseEntity<?> getAllRooms() {
         List<Room> rooms = roomService.getAllRooms();

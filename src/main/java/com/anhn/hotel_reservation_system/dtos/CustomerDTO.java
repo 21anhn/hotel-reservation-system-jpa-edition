@@ -1,5 +1,6 @@
 package com.anhn.hotel_reservation_system.dtos;
 
+import com.anhn.hotel_reservation_system.entities.Booking;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,5 +13,5 @@ import java.util.List;
 public class CustomerDTO {
     private Long id;
     private String name, address, email;
-    private List<BookingDTO> bookings;
+    private List<Booking> bookings;
 }

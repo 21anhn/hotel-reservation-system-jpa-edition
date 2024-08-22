@@ -4,7 +4,6 @@ import com.anhn.hotel_reservation_system.entities.Room;
 import com.anhn.hotel_reservation_system.repositories.RoomRepository;
 import com.anhn.hotel_reservation_system.services.RoomService;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.PropertyMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

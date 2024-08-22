@@ -1,5 +1,6 @@
 package com.anhn.hotel_reservation_system.controllers;
 
+import com.anhn.hotel_reservation_system.dtos.CustomerDTO;
 import com.anhn.hotel_reservation_system.entities.Customer;
 import com.anhn.hotel_reservation_system.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class CustomerController {
 
     @GetMapping
     public ResponseEntity<?> findAll() {
-        List<Customer> customers = customerService.getCustomers();
+        List<CustomerDTO> customers = customerService.getCustomers();
         if(customers == null) {
             return ResponseEntity.notFound().build();
         }
@@ -41,7 +42,7 @@ public class CustomerController {
 
     @PatchMapping("/{id}")
     public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Customer customer) {
-        Customer c = customerService.updateCustomer(id, customer);
+        CustomerDTO c = customerService.updateCustomer(id, customer);
         if(c == null) {
             return ResponseEntity.notFound().build();
         }

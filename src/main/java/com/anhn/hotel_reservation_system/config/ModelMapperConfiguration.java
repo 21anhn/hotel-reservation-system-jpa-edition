@@ -20,7 +20,19 @@ public class ModelMapperConfiguration {
                 return mappingContext.getSource() != null && (!(mappingContext.getSource() instanceof String) || !((String) mappingContext.getSource()).isEmpty());
             }
         };
+
+        //Not same data type
+        Condition<?, ?> sameDataType = new Condition<Object, Object>() {
+            @Override
+            public boolean applies(MappingContext<Object, Object> mappingContext) {
+                if(mappingContext.getSource() == null) {
+                    return false;
+                }
+                return mappingContext.getSource().getClass().equals(mappingContext.getDestinationType());
+            }
+        };
         modelMapper.getConfiguration().setPropertyCondition(notNullOrEmpty);
+        modelMapper.getConfiguration().setPropertyCondition(sameDataType);
         return modelMapper;
     }
 }

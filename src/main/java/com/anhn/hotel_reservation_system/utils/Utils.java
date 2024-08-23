@@ -9,4 +9,9 @@ public class Utils {
         DateTimeFormatter.ofPattern(format);
         return LocalDate.parse(date, DateTimeFormatter.ofPattern(format));
     }
+
+    public static String convertLocalDateToString(LocalDate date, String format) {
+        DateTimeFormatter.ofPattern(format);
+        return date.format(DateTimeFormatter.ofPattern(format));
+    }
 }

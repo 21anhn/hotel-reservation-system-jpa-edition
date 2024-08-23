@@ -1,6 +1,7 @@
 package com.anhn.hotel_reservation_system.controllers;
 
 import com.anhn.hotel_reservation_system.dtos.BookingDTO;
+import com.anhn.hotel_reservation_system.repositories.BookingRepository;
 import com.anhn.hotel_reservation_system.services.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,6 +14,17 @@ public class BookingController {
 
     @Autowired
     private BookingService bookingService;
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getBooking(@PathVariable Long id) {
+        //BookingDTO booking = bookingService.getBooking(id);
+        return new ResponseEntity<>(bookingService.getBooking(id), HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity<?> getAllBookings() {
+        return new ResponseEntity<>(bookingService.getAllBookings(), HttpStatus.OK);
+    }
 
     @PostMapping("/{customerId}/{roomId}")
     public ResponseEntity<?> addBooking(@PathVariable Long customerId, @PathVariable Long roomId, @RequestBody BookingDTO bookingDTO) {

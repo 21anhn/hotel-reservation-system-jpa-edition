@@ -6,6 +6,8 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 @Transactional
 public class BookingRepository {
@@ -21,7 +23,15 @@ public class BookingRepository {
         return em.find(Booking.class, id);
     }
 
-    public Booking updateBooking(Booking booking) {
-        return em.merge(booking);
+    public void updateBooking(Booking booking) {
+        em.merge(booking);
+    }
+
+    public void deleteBooking(Booking booking) {
+        em.remove(booking);
+    }
+
+    public List<Booking> getAll() {
+        return em.createQuery("FROM Booking", Booking.class).getResultList();
     }
 }

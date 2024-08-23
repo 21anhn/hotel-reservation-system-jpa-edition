@@ -16,4 +16,12 @@ public class BookingRepository {
     public void booking(Booking booking) {
         em.persist(booking);
     }
+
+    public Booking getBooking(Long id) {
+        return em.find(Booking.class, id);
+    }
+
+    public Booking updateBooking(Booking booking) {
+        return em.merge(booking);
+    }
 }

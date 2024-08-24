@@ -119,4 +119,22 @@ public class BookingServiceImpl implements BookingService {
         bookingDTO.getRoom().setBookings(booking.getRoom().getBookings());
         return bookingDTO;
     }
+
+    @Override
+    public List<BookingDTO> findBookingsByCustomerAndDateRange(Long id, LocalDate from, LocalDate to) {
+        List<Booking> bookings = bookingRepository.findBookingByCustomerIdAndFromDateToEndDate(id, from, to);
+        if (bookings == null || bookings.isEmpty()) {
+            return null;
+        }
+        List<BookingDTO> bookingDTOs = new ArrayList<>();
+        for (Booking booking : bookings) {
+            BookingDTO bookingDTO = modelMapper.map(booking, BookingDTO.class);
+            bookingDTO.setCheckInDate(Utils.convertLocalDateToString(booking.getCheckInDate(), "dd/MM/yyyy"));
+            bookingDTO.setCheckOutDate(Utils.convertLocalDateToString(booking.getCheckOutDate(), "dd/MM/yyyy"));
+            bookingDTO.getCustomer().setBookings(booking.getCustomer().getBookings());
+            bookingDTO.getRoom().setBookings(booking.getRoom().getBookings());
+            bookingDTOs.add(bookingDTO);
+        }
+        return bookingDTOs;
+    }
 }

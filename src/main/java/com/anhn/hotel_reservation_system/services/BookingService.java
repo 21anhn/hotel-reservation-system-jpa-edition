@@ -4,6 +4,7 @@ import com.anhn.hotel_reservation_system.dtos.BookingDTO;
 import com.anhn.hotel_reservation_system.entities.Customer;
 import com.anhn.hotel_reservation_system.entities.Room;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface BookingService {
@@ -12,4 +13,5 @@ public interface BookingService {
     boolean deleteBooking(Long bookingId);
     List<BookingDTO> getAllBookings();
     BookingDTO getBooking(Long bookingId);
+    List<BookingDTO> findBookingsByCustomerAndDateRange(Long id, LocalDate from, LocalDate to);
 }

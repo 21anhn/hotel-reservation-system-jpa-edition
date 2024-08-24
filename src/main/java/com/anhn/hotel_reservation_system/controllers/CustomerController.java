@@ -18,7 +18,7 @@ public class CustomerController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id) {
-        Customer c = customerService.getCustomer(id);
+        CustomerDTO c = customerService.getCustomer(id);
         if(c == null) {
             return ResponseEntity.notFound().build();
         }

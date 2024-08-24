@@ -29,7 +29,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerDTO updateCustomer(Long id, Customer customer) {
-        Customer customerInDB = getCustomer(id);
+        Customer customerInDB = customerRepository.getById(id);
         if(customerInDB == null) {
             return null;
         }
@@ -45,8 +45,11 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer getCustomer(Long id) {
-        return customerRepository.getById(id);
+    public CustomerDTO getCustomer(Long id) {
+        Customer c =  customerRepository.getById(id);
+        CustomerDTO customerDTO = modelMapper.map(c, CustomerDTO.class);
+        customerDTO.setBookings(c.getBookings());
+        return customerDTO;
     }
 
     @Override

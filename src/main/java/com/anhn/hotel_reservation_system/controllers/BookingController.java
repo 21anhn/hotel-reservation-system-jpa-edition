@@ -3,10 +3,15 @@ package com.anhn.hotel_reservation_system.controllers;
 import com.anhn.hotel_reservation_system.dtos.BookingDTO;
 import com.anhn.hotel_reservation_system.repositories.BookingRepository;
 import com.anhn.hotel_reservation_system.services.BookingService;
+import com.anhn.hotel_reservation_system.utils.Utils;
+import jakarta.annotation.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/booking")
@@ -48,5 +53,13 @@ public class BookingController {
     public ResponseEntity<?> deleteBooking(@PathVariable Long bookingId) {
         bookingService.deleteBooking(bookingId);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/customer")
+    public ResponseEntity<?> getBookingStatus(@RequestParam Long customerId, @RequestParam @Nullable String from, @RequestParam @Nullable String to) {
+        LocalDate fromDate = Utils.convertStringToLocalDate(from, "dd/MM/yyyy");
+        LocalDate toDate = Utils.convertStringToLocalDate(to, "dd/MM/yyyy");
+        List<BookingDTO> bookingDTOS = bookingService.findBookingsByCustomerAndDateRange(customerId, fromDate, toDate);
+        return new ResponseEntity<>(bookingDTOS, HttpStatus.OK);
     }
 }

@@ -43,4 +43,11 @@ public class RoomRepository {
                 .setParameter("roomNumber", roomNumber);
         return typedQuery.getSingleResult();
     }
+
+    public List<Room> findByType(String type) {
+        String query = "FROM Room WHERE type LIKE :type";
+        TypedQuery<Room> typedQuery = em.createQuery(query, Room.class)
+                .setParameter("type", "%" + type + "%");
+        return typedQuery.getResultList();
+    }
 }

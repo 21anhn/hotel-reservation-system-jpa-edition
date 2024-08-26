@@ -3,6 +3,7 @@ package com.anhn.hotel_reservation_system.controllers;
 import com.anhn.hotel_reservation_system.dtos.RoomDTO;
 import com.anhn.hotel_reservation_system.entities.Room;
 import com.anhn.hotel_reservation_system.services.RoomService;
+import jakarta.annotation.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +28,14 @@ public class RoomController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<?> getRoomByRoomNumber(@RequestParam String roomNumber) {
+    public ResponseEntity<?> getRoomByRoomNumber(@RequestParam @Nullable String roomNumber, @RequestParam @Nullable String type) {
+        if(roomNumber == null || roomNumber.isEmpty()) {
+            List<RoomDTO> rooms = roomService.getRoomByType(type);
+            if(rooms.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+            return new ResponseEntity<>(rooms, HttpStatus.OK);
+        }
         RoomDTO roomDTO = roomService.getRoomByRoomNumber(roomNumber);
         if(roomDTO == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

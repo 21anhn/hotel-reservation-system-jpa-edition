@@ -8,6 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -57,7 +58,17 @@ public class RoomServiceImpl implements RoomService {
     public RoomDTO getRoomByRoomNumber(String roomNumber) {
         Room r = roomRepository.findByRoomNumber(roomNumber);
         RoomDTO res = modelMapper.map(r, RoomDTO.class);
-        res.setBookings(r.getBookings());
+        return res;
+    }
+
+    @Override
+    public List<RoomDTO> getRoomByType(String type) {
+        List<Room> rooms = roomRepository.findByType(type);
+        List<RoomDTO> res = new ArrayList<>();
+        for (Room room : rooms) {
+            RoomDTO roomDTO = modelMapper.map(room, RoomDTO.class);
+            res.add(roomDTO);
+        }
         return res;
     }
 }

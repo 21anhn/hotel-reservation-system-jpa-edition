@@ -3,6 +3,7 @@ package com.anhn.hotel_reservation_system.repositories;
 import com.anhn.hotel_reservation_system.entities.Customer;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
@@ -33,5 +34,12 @@ public class CustomerRepository {
 
     public void delete(Long id) {
         em.remove(getById(id));
+    }
+
+    public List<Customer> getCustomersByName(String name) {
+        String sql = "FROM Customer WHERE name LIKE :name";
+        TypedQuery<Customer> query = em.createQuery(sql, Customer.class)
+                .setParameter("name", "%" + name + "%");
+        return query.getResultList();
     }
 }

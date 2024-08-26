@@ -3,6 +3,7 @@ package com.anhn.hotel_reservation_system.controllers;
 import com.anhn.hotel_reservation_system.dtos.CustomerDTO;
 import com.anhn.hotel_reservation_system.entities.Customer;
 import com.anhn.hotel_reservation_system.services.CustomerService;
+import jakarta.annotation.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +24,18 @@ public class CustomerController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(c);
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<?> searchCustomers(@RequestParam @Nullable String name) {
+        if(name != null && !name.isEmpty()) {
+            List<Customer> customers = customerService.getCustomersByName(name);
+            if(customers == null || customers.size() == 0) {
+                return ResponseEntity.notFound().build();
+            }
+            return ResponseEntity.ok(customers);
+        }
+        return ResponseEntity.badRequest().build();
     }
 
     @GetMapping

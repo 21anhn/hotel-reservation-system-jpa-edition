@@ -11,4 +11,5 @@ public interface CustomerService {
     boolean deleteCustomer(Long id);
     CustomerDTO getCustomer(Long id);
     List<CustomerDTO> getCustomers();
+    List<Customer> getCustomersByName(String name);
 }

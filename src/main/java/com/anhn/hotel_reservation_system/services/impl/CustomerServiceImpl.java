@@ -67,4 +67,9 @@ public class CustomerServiceImpl implements CustomerService {
         }
         return customerDTOList;
     }
+
+    @Override
+    public List<Customer> getCustomersByName(String name) {
+        return customerRepository.getCustomersByName(name);
+    }
 }

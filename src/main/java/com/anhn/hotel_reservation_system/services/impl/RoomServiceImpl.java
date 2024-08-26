@@ -1,5 +1,6 @@
 package com.anhn.hotel_reservation_system.services.impl;
 
+import com.anhn.hotel_reservation_system.dtos.RoomDTO;
 import com.anhn.hotel_reservation_system.entities.Room;
 import com.anhn.hotel_reservation_system.repositories.RoomRepository;
 import com.anhn.hotel_reservation_system.services.RoomService;
@@ -50,5 +51,13 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public List<Room> getAllRooms() {
         return roomRepository.findAll();
+    }
+
+    @Override
+    public RoomDTO getRoomByRoomNumber(String roomNumber) {
+        Room r = roomRepository.findByRoomNumber(roomNumber);
+        RoomDTO res = modelMapper.map(r, RoomDTO.class);
+        res.setBookings(r.getBookings());
+        return res;
     }
 }

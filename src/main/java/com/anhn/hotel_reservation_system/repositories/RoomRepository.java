@@ -3,6 +3,7 @@ package com.anhn.hotel_reservation_system.repositories;
 import com.anhn.hotel_reservation_system.entities.Room;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
@@ -34,5 +35,12 @@ public class RoomRepository {
 
     public List<Room> findAll() {
         return em.createQuery("FROM Room", Room.class).getResultList();
+    }
+
+    public Room findByRoomNumber(String roomNumber) {
+        String query = "FROM Room WHERE roomNumber = :roomNumber";
+        TypedQuery<Room> typedQuery = em.createQuery(query, Room.class)
+                .setParameter("roomNumber", roomNumber);
+        return typedQuery.getSingleResult();
     }
 }

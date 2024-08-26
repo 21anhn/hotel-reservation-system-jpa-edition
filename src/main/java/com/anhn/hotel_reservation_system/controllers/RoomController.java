@@ -1,5 +1,6 @@
 package com.anhn.hotel_reservation_system.controllers;
 
+import com.anhn.hotel_reservation_system.dtos.RoomDTO;
 import com.anhn.hotel_reservation_system.entities.Room;
 import com.anhn.hotel_reservation_system.services.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,15 @@ public class RoomController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(room, HttpStatus.OK);
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<?> getRoomByRoomNumber(@RequestParam String roomNumber) {
+        RoomDTO roomDTO = roomService.getRoomByRoomNumber(roomNumber);
+        if(roomDTO == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(roomDTO, HttpStatus.OK);
     }
 
     @GetMapping

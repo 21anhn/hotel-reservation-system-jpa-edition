@@ -28,7 +28,7 @@ public class RoomController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<?> getRoomByRoomNumber(@RequestParam @Nullable String roomNumber, @RequestParam @Nullable String type) {
+    public ResponseEntity<?> searchRooms(@RequestParam @Nullable String roomNumber, @RequestParam @Nullable String type) {
         if(roomNumber == null || roomNumber.isEmpty()) {
             List<RoomDTO> rooms = roomService.getRoomByType(type);
             if(rooms.isEmpty()) {

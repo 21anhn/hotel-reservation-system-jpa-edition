@@ -42,4 +42,18 @@ public class CustomerRepository {
                 .setParameter("name", "%" + name + "%");
         return query.getResultList();
     }
+
+    public List<Customer> getCustomersByAddress(String address) {
+        String sql = "FROM Customer WHERE address LIKE :address";
+        TypedQuery<Customer> query = em.createQuery(sql, Customer.class)
+                .setParameter("address", "%" + address + "%");
+        return query.getResultList();
+    }
+
+    public List<Customer> getCustomersByEmail(String email) {
+        String sql = "FROM Customer WHERE email LIKE :email";
+        TypedQuery<Customer> query = em.createQuery(sql, Customer.class)
+                .setParameter("email", "%" + email + "%");
+        return query.getResultList();
+    }
 }

@@ -27,12 +27,9 @@ public class CustomerController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<?> searchCustomers(@RequestParam @Nullable String name) {
-        if(name != null && !name.isEmpty()) {
-            List<Customer> customers = customerService.getCustomersByName(name);
-            if(customers == null || customers.size() == 0) {
-                return ResponseEntity.notFound().build();
-            }
+    public ResponseEntity<?> searchCustomers(@RequestParam @Nullable String name, @RequestParam @Nullable String address, @RequestParam @Nullable String email) {
+        List<Customer> customers = customerService.search(name, address, email);
+        if(customers != null) {
             return ResponseEntity.ok(customers);
         }
         return ResponseEntity.badRequest().build();

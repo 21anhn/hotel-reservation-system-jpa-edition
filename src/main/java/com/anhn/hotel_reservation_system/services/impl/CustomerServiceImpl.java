@@ -72,4 +72,23 @@ public class CustomerServiceImpl implements CustomerService {
     public List<Customer> getCustomersByName(String name) {
         return customerRepository.getCustomersByName(name);
     }
+
+    @Override
+    public List<Customer> getCustomersByAddress(String address) {
+        return customerRepository.getCustomersByName(address);
+    }
+
+    @Override
+    public List<Customer> search(String name, String address, String email) {
+        if (name != null && !name.isEmpty()) {
+            return customerRepository.getCustomersByName(name);
+        }
+        if (address != null && !address.isEmpty()) {
+            return customerRepository.getCustomersByName(address);
+        }
+        if (email != null && !email.isEmpty()) {
+            return customerRepository.getCustomersByEmail(email);
+        }
+        return null;
+    }
 }

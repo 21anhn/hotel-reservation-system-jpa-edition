@@ -5,8 +5,6 @@ import com.anhn.hotel_reservation_system.entities.Customer;
 import com.anhn.hotel_reservation_system.repositories.CustomerRepository;
 import com.anhn.hotel_reservation_system.services.CustomerService;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.PropertyMap;
-import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -79,15 +77,20 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    public List<Customer> getCustomersByEmail(String email) {
+        return customerRepository.getCustomersByEmail(email);
+    }
+
+    @Override
     public List<Customer> search(String name, String address, String email) {
         if (name != null && !name.isEmpty()) {
             return customerRepository.getCustomersByName(name);
         }
         if (address != null && !address.isEmpty()) {
-            return customerRepository.getCustomersByName(address);
+            return getCustomersByAddress(address);
         }
         if (email != null && !email.isEmpty()) {
-            return customerRepository.getCustomersByEmail(email);
+            return getCustomersByEmail(email);
         }
         return null;
     }

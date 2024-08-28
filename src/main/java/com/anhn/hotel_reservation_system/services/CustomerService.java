@@ -13,5 +13,6 @@ public interface CustomerService {
     List<CustomerDTO> getCustomers();
     List<Customer> getCustomersByName(String name);
     List<Customer> getCustomersByAddress(String address);
+    List<Customer> getCustomersByEmail(String email);
     List<Customer> search(String name, String address, String email);
 }

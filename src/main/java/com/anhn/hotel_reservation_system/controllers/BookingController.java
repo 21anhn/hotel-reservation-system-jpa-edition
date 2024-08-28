@@ -1,7 +1,6 @@
 package com.anhn.hotel_reservation_system.controllers;
 
 import com.anhn.hotel_reservation_system.dtos.BookingDTO;
-import com.anhn.hotel_reservation_system.repositories.BookingRepository;
 import com.anhn.hotel_reservation_system.services.BookingService;
 import com.anhn.hotel_reservation_system.utils.Utils;
 import jakarta.annotation.Nullable;

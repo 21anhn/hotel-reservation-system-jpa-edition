@@ -1,8 +1,6 @@
 package com.anhn.hotel_reservation_system.services;
 
 import com.anhn.hotel_reservation_system.dtos.BookingDTO;
-import com.anhn.hotel_reservation_system.entities.Customer;
-import com.anhn.hotel_reservation_system.entities.Room;
 
 import java.time.LocalDate;
 import java.util.List;

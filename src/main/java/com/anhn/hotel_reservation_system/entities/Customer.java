@@ -27,6 +27,8 @@ public class Customer {
 
     private String email;
 
+    private String password;
+
     @JsonIgnore
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Booking> bookings = new ArrayList<>();

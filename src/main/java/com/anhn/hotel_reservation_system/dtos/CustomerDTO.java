@@ -12,6 +12,6 @@ import java.util.List;
 @AllArgsConstructor
 public class CustomerDTO {
     private Long id;
-    private String name, address, email;
+    private String name, address, email, password;
     private List<Booking> bookings;
 }

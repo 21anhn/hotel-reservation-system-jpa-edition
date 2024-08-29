@@ -56,4 +56,12 @@ public class CustomerRepository {
                 .setParameter("email", "%" + email + "%");
         return query.getResultList();
     }
+
+    public Customer login(String email, String password) {
+        String sql = "FROM Customer WHERE email = :email AND password = :password";
+        TypedQuery<Customer> query = em.createQuery(sql, Customer.class)
+                .setParameter("email", email)
+                .setParameter("password", password);
+        return query.getSingleResult();
+    }
 }

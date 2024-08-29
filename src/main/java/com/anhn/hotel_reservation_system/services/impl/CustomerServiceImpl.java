@@ -94,4 +94,13 @@ public class CustomerServiceImpl implements CustomerService {
         }
         return null;
     }
+
+    @Override
+    public CustomerDTO login(String email, String password) {
+        Customer c = customerRepository.login(email, password);
+        if (c == null) {
+            return null;
+        }
+        return modelMapper.map(c, CustomerDTO.class);
+    }
 }

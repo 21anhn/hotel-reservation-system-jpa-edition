@@ -3,6 +3,7 @@ package com.anhn.hotel_reservation_system.controllers;
 import com.anhn.hotel_reservation_system.dtos.RoomDTO;
 import com.anhn.hotel_reservation_system.entities.Room;
 import com.anhn.hotel_reservation_system.services.RoomService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/rooms")
+@Tag(name = "Room Controller")
 public class RoomController {
 
     @Autowired

@@ -3,6 +3,7 @@ package com.anhn.hotel_reservation_system.controllers;
 import com.anhn.hotel_reservation_system.dtos.BookingDTO;
 import com.anhn.hotel_reservation_system.services.BookingService;
 import com.anhn.hotel_reservation_system.utils.Utils;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/booking")
+@Tag(name = "Booking Controller")
 public class BookingController {
 
     @Autowired

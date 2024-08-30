@@ -9,3 +9,11 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: none
+
+open:
+  api:
+    title: API Document
+    version: v1.0.0
+    description: API Service for Hotel Management System
+    serverUrl: http://localhost:8080
+    serverName: Server Test

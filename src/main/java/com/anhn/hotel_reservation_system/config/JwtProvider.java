@@ -27,4 +27,11 @@ public class JwtProvider {
         return claims.get("email", String.class);
     }
 
+    public static Claims getAllClaimsFromToken(String token) {
+        return Jwts.parser()
+                .setSigningKey(secretKey).build()
+                .parseClaimsJws(token)
+                .getBody();
+    }
+
 }

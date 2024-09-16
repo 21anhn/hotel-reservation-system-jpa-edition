@@ -1,1 +1,1 @@
-web: java -jar build/libs/yourapp.jar
+web: java -jar build/libs/hotel-reservation-system-0.0.1-SNAPSHOT
